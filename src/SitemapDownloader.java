@@ -12,6 +12,8 @@ public class SitemapDownloader {
 	{
 		findAllRobotsFiles(directoryName);
 	}
+	
+	
 	private void findSitemapURLinRobotsFile(String robotsFilePath, String directoryName)
 	{
 		BufferedReader br = null;
@@ -30,6 +32,7 @@ public class SitemapDownloader {
 						System.out.println(sCurrentLine);
 						System.out.println(sitemapUrl);
 						FileDownloader.downloadFile(sitemapUrl, directoryName);
+						SitemapXMLFilePerser.downloadAllSitemapsFromSitemapFile(directoryName);
 						System.out.println();
 						isSitemapAvailable = 1;
 					}
@@ -49,17 +52,17 @@ public class SitemapDownloader {
 			}
 		}
 	}
-   private void findAllRobotsFiles(String directoryName){
-       File directory = new File(directoryName);
-       //get all the files from a directory
-       File[] fList = directory.listFiles();
-       for (File file : fList){
-           if (file.isFile()){
-               //System.out.println(file.getAbsolutePath());
-               findSitemapURLinRobotsFile(file.getAbsolutePath(), directoryName);
-           } else if (file.isDirectory()){
-               findAllRobotsFiles(file.getAbsolutePath());
-           }
-       }
-   }
+	private void findAllRobotsFiles(String directoryName){
+	       File directory = new File(directoryName);
+	       //get all the files from a directory
+	       File[] fList = directory.listFiles();
+	       for (File file : fList){
+	           if (file.isFile()){
+	               //System.out.println(file.getAbsolutePath());
+	               findSitemapURLinRobotsFile(file.getAbsolutePath(), directoryName);
+	           } else if (file.isDirectory()){
+	               findAllRobotsFiles(file.getAbsolutePath());
+	           }
+	       }
+	   }
 }

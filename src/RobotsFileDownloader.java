@@ -4,7 +4,10 @@ import java.io.FileReader;
 import java.io.IOException;
  
 public class RobotsFileDownloader {
-	   public static void ArticlesSites ( ) throws IOException {
+	public RobotsFileDownloader() throws IOException {
+		ArticlesSites();
+	}
+	   private void ArticlesSites ( ) throws IOException {
 			BufferedReader br = null;
 			String url = null;
 			String WebsitesSitemapsPath = "C:\\SitemapProjects\\Sitemap\\WebsitesSitemaps\\";
@@ -45,10 +48,4 @@ public class RobotsFileDownloader {
 				}
 			}
 	   	}
-	   public static void main(String[] args) throws IOException {
-	        ArticlesSites();
-	        System.out.println();
-	        new SitemapDownloader();
-	        
-	    }
 }
